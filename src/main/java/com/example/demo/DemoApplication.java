@@ -25,7 +25,7 @@ public class DemoApplication {
 		return "<html>"
 			+ "<body>"
 			+ String.format("<h1>Hello, %s</h1>",name)
-			+ String.format(" <img src=\"%s/cat.jpg\" width=\"104\" height=\"142\">", imgserver)
+			+ String.format(" <img src=\"%s/cat.png\" width=\"104\" height=\"142\">", imgserver)
 			+ "</body>"
 			+ "</html>";
 	}
