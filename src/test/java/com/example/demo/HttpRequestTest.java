@@ -22,6 +22,6 @@ public class HttpRequestTest {
 	@Test
 	public void greetingShouldReturnDefaultMessage() throws Exception {
 		assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/ping",
-				String.class)).contains("ping");
+				String.class)).contains("pong");
 	}
 }
