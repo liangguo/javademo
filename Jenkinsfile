@@ -13,6 +13,10 @@ node {
         sh "./mvnw clean package"
     }
 
+    stage('Unit Test') {
+        sh "./mvnw test"
+    }
+
     stage('Build image') {
         app= docker.build "liangguo/javademo"
     }
