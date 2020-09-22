@@ -37,7 +37,7 @@ node {
         //    imgip=$(kubectl get svc javademo-img -n javademo |grep javademo-img|awk '{print $4;}')
         //    sed -e 's/BUILD/${env.BUILD_NUMBER}/' javademo.yml |kubectl apply -f -
         //'''
-        sh "sed -e 's/BUILD/${env.BUILD_NUMBER}/' javademo-img.yml|kubectl apply -f -"
+        sh "sed -e 's/BUILD/${env.BUILD_NUMBER}/' javademo.yml|kubectl apply -f -"
     }
 
     stage('User test 1: url exist') {
