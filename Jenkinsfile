@@ -33,11 +33,11 @@ node {
     }
 
     stage('Deploy javademo to k8s') {
-        sh """
+        sh '''
             imgip=$(kubectl get svc javademo-img -n javademo |grep javademo-img|awk '{print $4;}')
-            sed -e 's/BUILD/${env.BUILD_NUMBER}/' javademo.yml |\
-            sed -e 's/URL/$(imgip)/' |kubectl apply -f -
-        """
+            sed -e "s/BUILD/${env.BUILD_NUMBER}/" javademo.yml |\
+            sed -e "s/URL/$(imgip)/" |kubectl apply -f -
+        '''
     }
 
     stage('User test 1: url exist') {
