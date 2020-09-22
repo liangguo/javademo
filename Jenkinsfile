@@ -35,8 +35,7 @@ node {
     stage('Deploy javademo to k8s') {
         sh '''
             imgip=$(kubectl get svc javademo-img -n javademo |grep javademo-img|awk '{print $4;}')
-            sed -e "s/BUILD/${env.BUILD_NUMBER}/" javademo.yml |\
-            sed -e "s/URL/$(imgip)/" |kubectl apply -f -
+            sed -e "s/BUILD/${env.BUILD_NUMBER}/" -e "s/URL/${imgip}/" javademo.yml |kubectl apply -f -
         '''
     }
 
