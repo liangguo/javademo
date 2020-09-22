@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: javademo
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: javademo-img
+  namespace: javademo
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: javademo-img
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javademo-img
+  namespace: javademo
+spec:
+  selector:
+    matchLabels:
+      app: javademo-img
+  template:
+    metadata:
+      labels:
+        app: javademo-img
+    spec:
+      containers:
+      - name: javademo-img
+        image: liangguo/javademo-img:latest
+        ports:
+        - name: http
+          containerPort: 80
+    
+        

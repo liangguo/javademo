@@ -1,0 +1,41 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: javademo
+  namespace: javademo
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: javademo
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: javademo
+  namespace: javademo
+spec:
+  selector:
+    matchLabels:
+      app: javademo
+  template:
+    metadata:
+      labels:
+        app: javademo
+    spec:
+      containers:
+      - name: javademo-img
+        image: liangguo/javademo:BUILD
+        ports:
+        - name: http
+          containerPort: 8080
+        env:
+          - name: CATALINA_OPTS
+            value: "-Dimgserver=http://URL/img/"
+        
