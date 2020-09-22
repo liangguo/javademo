@@ -59,7 +59,7 @@ node {
         sh '''
             imgip=$(kubectl get svc javademo-img -n javademo |grep javademo-img|awk '{print $4;}')
             javademoip=$(kubectl get svc javademo -n javademo |grep javademo|awk '{print $4;}')
-            curl http://${javademoip}/hello | grep $imgip
+            curl http://${javademoip}/demo/hello | grep $imgip
             exit $?
         '''
     }
