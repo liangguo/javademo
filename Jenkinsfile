@@ -43,7 +43,7 @@ node {
     stage('User test 1: url exist') {
         sh '''
             javademoip=$(kubectl get svc javademo -n javademo |grep javademo|awk '{print $4;}')
-            response=$(curl -s -o /dev/null -w "%{http_code}\n" http://${javademoip}/ping)
+            response=$(curl -s -o /dev/null -w "%{http_code}\n" http://${javademoip}/demo/ping)
             if [ "$response" != "200" ];
             then
                 exit 1
